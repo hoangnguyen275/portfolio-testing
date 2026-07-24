@@ -382,7 +382,7 @@ function App() {
 
         {/* cards */}
         <div className="projects__cards_container">
-          <a href="hello" target="_blank">
+          <a href="https://ecommerce-app.hoangnguyendev.com" target="_blank rel="noopener noreferrer">
             <div className="projects_cards">
               <div className="projects__cards_wrapper">
                 <img
