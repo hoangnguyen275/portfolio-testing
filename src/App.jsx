@@ -13,6 +13,7 @@ import sqlIcon from "./assets/icons/postgresql.svg";
 import reactIcon from "./assets/icons/react.svg";
 import pythonIcon from "./assets/icons/python.svg";
 import projectImage from "./assets/project.jpg";
+import project2Image from "./assets/project2.png";
 import resume from "./assets/Resume_HoangNguyen.pdf";
 import "./App.css";
 import "./responsive.css";
@@ -394,6 +395,22 @@ function App() {
               <div className="projects__cards_titles">
                 <h4>1st Project</h4>
                 <h3>Ecommerce App</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://realtime-testing.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <div className="projects_cards">
+              <div className="projects__cards_wrapper">
+                <img
+                  src={project2Image}
+                  alt="project-image"
+                  className="projects__cards_img"
+                />
+              </div>
+              <div className="projects__cards_titles">
+                <h4>2nd Project</h4>
+                <h3>Real-Time Chat App</h3>
               </div>
             </div>
           </a>
