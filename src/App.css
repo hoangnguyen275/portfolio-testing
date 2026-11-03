@@ -30,6 +30,11 @@ body {
   background-size: 10.5px 10.5px;
 }
 
+/* the full-page rocket overlay (ScrollRocket) is positioned against this */
+#root {
+  position: relative;
+}
+
 a {
   text-decoration: none;
 }

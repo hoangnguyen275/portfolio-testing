@@ -47,6 +47,12 @@ Small Tablet - landscape mode
     }
   }
 
+  /* the decorative rocket flight and solar system are desktop/tablet only */
+  .solarSystem,
+  .rocketLayer {
+    display: none;
+  }
+
   /* skills */  
   .skills__grid_container{
     grid-template-columns: repeat(1, minmax(200px, 1fr));

@@ -15,6 +15,8 @@ import pythonIcon from "./assets/icons/python.svg";
 import projectImage from "./assets/project.jpg";
 import project2Image from "./assets/project2.png";
 import resume from "./assets/Resume_HoangNguyen.pdf";
+import ScrollRocket from "./components/ScrollRocket";
+import SolarSystem from "./components/SolarSystem";
 import "./App.css";
 import "./responsive.css";
 import "./animation.css";
@@ -62,9 +64,10 @@ function App() {
     </header>
 
     {/* About Me - Introduce myself */}
-    <section className="aboutMe__section">
+    <section className="aboutMe__section" id="about">
       {/* Motion pictures */}
-      <img src={rocketIcon} alt="rocket icon" />
+      {/* Invisible "home" of the rocket: <ScrollRocket /> starts its flight from here */}
+      <img src={rocketIcon} alt="" aria-hidden="true" data-rocket-home />
 
       <img src={laptopIcon} alt="laptop icon" />
 
@@ -101,7 +104,10 @@ function App() {
     </section>
 
     {/* SKills */}
-    <section className="skills__section">
+    <section className="skills__section" id="skills">
+      {/* Background planets, painted below the skills content */}
+      <SolarSystem />
+
       <div className="container skills__container">
         {/* header */}
         <div className="section__header">
@@ -419,11 +425,14 @@ function App() {
     </section>
 
     {/* Footer */}
-    <footer>
+    <footer id="footer">
       <div className="container">
         <p>© Hoang Nguyen's Portfolio</p>
       </div>
     </footer>
+
+    {/* Rocket that follows the scroll; sits above everything and never blocks clicks */}
+    <ScrollRocket />
   </>
   );
 }

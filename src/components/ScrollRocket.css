@@ -1,0 +1,56 @@
+/* Full-page overlay that carries the rocket. It never blocks clicks. */
+.rocketLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: clip;
+}
+
+.rocketLayer__svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* trail + heart dots, tinted to match the portfolio's indigo */
+.rocketDot {
+  fill: hsla(var(--p-600-code), 0.55);
+}
+
+.rocketShip {
+  --rocket-size: clamp(72px, 6vw, 110px); /* size while flying; it starts at the home picture's size */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--rocket-size);
+  will-change: transform;
+  visibility: hidden; /* shown by JS once it has a position */
+}
+
+/* gentle hover, same idea as the old floating rocket (percentage so it scales with the rocket) */
+.rocketShip__bob {
+  animation: rocketBob 6s ease-in-out infinite;
+}
+
+.rocketShip img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes rocketBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6.7%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocketShip__bob {
+    animation: none;
+  }
+}

@@ -12,12 +12,12 @@
     height: auto;
   }
 
+  /* the rocket's invisible home: the flying rocket (ScrollRocket) starts exactly here */
   & img:nth-child(1){
     top: -20%;
     left: 4%;
-    z-index: -10;
-    animation: float 6s ease-in-out infinite;
-
+    visibility: hidden;
+    pointer-events: none;
   }
 
   & img:nth-child(2){

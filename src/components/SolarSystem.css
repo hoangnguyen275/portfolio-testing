@@ -1,0 +1,50 @@
+/*
+  Background solar system. It sits inside .skills__section, half off the left screen edge,
+  and paints BELOW the skills content (the section is an isolated stacking context and its
+  container is z-index 1).
+*/
+.solarSystem {
+  --L: clamp(620px, 64vw, 1120px); /* side of the square the oval is drawn in */
+  --solar-cy: calc(var(--L) * 0.3); /* oval centre, measured down from the top of the skills section */
+  position: absolute;
+  z-index: 0;
+  width: var(--L);
+  aspect-ratio: 1;
+  left: calc(var(--L) * -0.55); /* oval centre sits just past the screen's left edge: about half shows, clear of the title text */
+  top: calc(var(--solar-cy) - var(--L) / 2);
+  pointer-events: none;
+  user-select: none;
+}
+
+.solarSystem__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* faint dotted orbit line */
+.solarSystem__orbit {
+  fill: none;
+  stroke: var(--p-300);
+  stroke-opacity: 0.55;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1 13;
+}
+
+.solarSystem__planet {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.solarSystem__planet img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 8px 14px hsla(var(--p-900-code), 0.18));
+}
