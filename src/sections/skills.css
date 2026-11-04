@@ -1,7 +1,6 @@
-/* planets (SolarSystem, z-index 0) paint below the content (z-index 1) */
+/* the section is only a positioning box for <SolarSystem />, which sits on a layer behind the whole page (z-index -1) */
 .skills__section {
   position: relative;
-  isolation: isolate;
   overflow-x: clip;
 }
 

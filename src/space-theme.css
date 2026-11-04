@@ -1,0 +1,64 @@
+/*
+  Space theme: turns the page background into the universe (see components/SpaceBackground)
+  and flips the text that sits directly on the page to light. Cards and panels keep their
+  light look, so they stand out like windows on the dark sky.
+
+  Imported last in App.jsx so it wins over the older section styles.
+  To go back to the white page: remove the import in App.jsx (and <SpaceBackground />).
+*/
+:root {
+  --space-text: hsl(228, 100%, 97%);
+  --space-text-dim: hsla(228, 100%, 94%, 0.74);
+}
+
+body {
+  background-color: #070a24; /* shows for a moment before the fixed sky paints */
+  background-image: none;
+}
+
+/* ---- header: text sits straight on the sky ---- */
+.header__title {
+  color: var(--space-text);
+}
+
+.header__container p {
+  color: var(--space-text-dim);
+}
+
+.header__container span {
+  color: var(--space-text);
+}
+
+.header__container .email-display {
+  color: var(--space-text-dim); /* the "Email:" label and the word "or" */
+}
+
+/* ---- section titles and intro text outside the cards (Skills, Projects) ---- */
+.section__header .section__title {
+  color: var(--space-text);
+}
+
+.section__header .section__description {
+  color: var(--space-text-dim);
+  text-shadow: 0 1px 10px rgba(5, 5, 30, 0.85); /* stays readable when a planet drifts behind it */
+}
+
+/* ---- about: the soft frame around the white card needs a bit more body on a dark sky ---- */
+.aboutMe__container {
+  background-color: hsla(var(--p-600-code), 0.28);
+  box-shadow: 0 0 60px hsla(var(--p-500-code), 0.18);
+}
+
+/* ---- projects: cards were transparent over a white page (a typo'd variable); make them real white panels ---- */
+.projects_cards {
+  background: var(--foreground-color);
+}
+
+.projects_cards:hover {
+  box-shadow: 0 15px 44px hsla(var(--p-500-code), 0.4);
+}
+
+/* ---- footer ---- */
+footer {
+  color: var(--space-text-dim);
+}

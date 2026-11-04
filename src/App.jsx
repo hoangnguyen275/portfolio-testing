@@ -1,4 +1,5 @@
 import rocketIcon from "./assets/rocket-icon.ico";
+import helmetImage from "./assets/helmet.png";
 import laptopIcon from "./assets/laptop-icon.svg";
 import checkIcon from "./assets/check-icon.svg";
 import bookIcon from "./assets/closed-book.svg";
@@ -17,9 +18,11 @@ import project2Image from "./assets/project2.png";
 import resume from "./assets/Resume_HoangNguyen.pdf";
 import ScrollRocket from "./components/ScrollRocket";
 import SolarSystem from "./components/SolarSystem";
+import SpaceBackground from "./components/SpaceBackground";
 import "./App.css";
 import "./responsive.css";
 import "./animation.css";
+import "./space-theme.css";
 
 function App() {
   return (
@@ -27,13 +30,25 @@ function App() {
     <title>Hoang Nguyen's Portfolio</title>
     <link rel="icon" type="image/svg+xml" href={rocketIcon} />
 
+    {/* Universe behind the whole page: stars + falling meteors */}
+    <SpaceBackground />
+
     {/* Header */}
     <header>
       <div className="container header__container">
         {/* Left column */}
         <div className="header__column--left">
-          {/* Avatar */}
-          <div className="header__img"></div>
+          {/* Avatar, seen through an astronaut helmet */}
+          <div className="header__avatar">
+            <div className="header__img"></div>
+            <img
+              className="header__helmet"
+              src={helmetImage}
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+            />
+          </div>
 
           <div className="header__content--left">
             <h2 className="header__title">Hoang Nguyen</h2>

@@ -15,7 +15,7 @@
 
 /* trail + heart dots, tinted to match the portfolio's indigo */
 .rocketDot {
-  fill: hsla(var(--p-600-code), 0.55);
+  fill: rgba(190, 235, 255, 0.8);
 }
 
 .rocketShip {
@@ -37,6 +37,7 @@
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 0 14px rgba(79, 216, 245, 0.5)); /* a soft glow so it reads on the dark sky */
 }
 
 @keyframes rocketBob {

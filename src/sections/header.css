@@ -33,7 +33,7 @@ header {
 .header__column--left {
   display: flex;
   flex: 1;
-  gap: 24px;
+  gap: 32px; /* a bit more room for the helmet that wraps the avatar */
   align-items: center;
 
   & .header__content--left {
@@ -75,7 +75,33 @@ header {
   gap: 8px;
 }
 
+/*
+  Avatar + astronaut helmet. The helmet picture has a transparent visor, so the round photo shows
+  through it. The helmet is sized so the visor opening (about 191x152 in the 229x249 picture) is
+  slightly narrower than the 118px photo: the helmet's rim covers the photo's edge on every side.
+  The helmet is centred on the middle of the visor opening (49.8% across, 44% down), not on the picture.
+*/
+.header__avatar {
+  position: relative;
+  width: 118px;
+  height: 118px;
+  flex-shrink: 0;
+}
+
+.header__helmet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 134px;
+  height: auto;
+  transform: translate(-49.8%, -44%);
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+
 .header__img {
+  position: relative;
   width: 118px;
   height: 118px;
   background-image: url("../assets/avatar.png");
@@ -88,4 +114,14 @@ header {
     0 4px 6px -1px hsla(0, 0%, 0%, 0.2),
     0 2px 4px -2px hsla(0, 0%, 0%, 0.2),
     inset 0px 1px 3px hsla(0, 0%, 0%, 0.1);
+}
+
+/* a soft gleam across the top-left, like light on the visor glass */
+.header__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.34), transparent 45%);
+  pointer-events: none;
 }

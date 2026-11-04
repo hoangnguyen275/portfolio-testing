@@ -1,16 +1,18 @@
 /*
-  Background solar system. It sits inside .skills__section, half off the left screen edge,
-  and paints BELOW the skills content (the section is an isolated stacking context and its
-  container is z-index 1).
+  Background solar system. It is positioned against .skills__section, with the sun in the
+  open space beside the Skills title. z-index -1 puts it on a layer behind ALL page content
+  (About card, Skills cards...), just above the fixed starry sky, so it only shows through
+  the gaps. The screen's left edge cuts the rings: you see the sun and the right-hand part of every orbit.
 */
 .solarSystem {
-  --L: clamp(620px, 64vw, 1120px); /* side of the square the oval is drawn in */
-  --solar-cy: calc(var(--L) * 0.3); /* oval centre, measured down from the top of the skills section */
+  --L: clamp(700px, 72vw, 1260px); /* side of the square the system is drawn in */
+  --solar-cy: calc(var(--L) * 0.1); /* centre of the sun, measured down from the top of the skills section */
+  --solar-cx: calc(var(--L) * 0.12); /* centre of the sun, measured right from the screen's left edge */
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   width: var(--L);
   aspect-ratio: 1;
-  left: calc(var(--L) * -0.55); /* oval centre sits just past the screen's left edge: about half shows, clear of the title text */
+  left: calc(var(--solar-cx) - var(--L) / 2);
   top: calc(var(--solar-cy) - var(--L) / 2);
   pointer-events: none;
   user-select: none;
@@ -24,14 +26,56 @@
   overflow: visible;
 }
 
-/* faint dotted orbit line */
+/* orbit rings drawn as a trail of little dots (a zero-length dash with a round cap is a dot) */
 .solarSystem__orbit {
   fill: none;
-  stroke: var(--p-300);
-  stroke-opacity: 0.55;
-  stroke-width: 4;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 2.4; /* dot size, in the 600-unit drawing space */
   stroke-linecap: round;
-  stroke-dasharray: 1 13;
+  stroke-dasharray: 0 9; /* dot, then a 9-unit gap: raise the second number for sparser dots */
+}
+
+/* the sun: centred on the rings, with a soft glow and slowly turning rays */
+.solarSystem__sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.solarSystem__sun::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 196, 64, 0.5), rgba(255, 150, 40, 0.16) 55%, transparent);
+  animation: sunPulse 5s ease-in-out infinite alternate;
+}
+
+.solarSystem__sun img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+  animation: sunSpin 120s linear infinite;
+}
+
+@keyframes sunSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sunPulse {
+  from {
+    opacity: 0.75;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
 }
 
 .solarSystem__planet {
@@ -46,5 +90,12 @@
   width: 100%;
   height: auto;
   -webkit-user-drag: none;
-  filter: drop-shadow(0 8px 14px hsla(var(--p-900-code), 0.18));
+  filter: drop-shadow(0 0 8px rgba(190, 210, 255, 0.28));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solarSystem__sun::before,
+  .solarSystem__sun img {
+    animation: none;
+  }
 }
